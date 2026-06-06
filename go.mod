@@ -2,7 +2,7 @@ module github.com/byteforge-run/tinyshop-tester
 
 go 1.24
 
-require github.com/byteforge-run/tester-utils v1.15.0
+require github.com/byteforge-run/tester-utils v1.16.0
 
 require (
 	github.com/creack/pty v1.1.24 // indirect
