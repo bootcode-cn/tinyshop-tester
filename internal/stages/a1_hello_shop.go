@@ -48,7 +48,7 @@ func testHelloShop(harness *test_case_harness.TestCaseHarness) error {
 	tests := []tc{
 		{"file_exists", "true", "work/act1_opening_day/hello_shop.py 文件存在"},
 		{"exit_ok", "true", "脚本正常退出（exit code 0）"},
-		{"output", "欢迎光临 TinyShop", "输出为「欢迎光临 TinyShop」"},
+		{"output", "欢迎光临 TinyShop！", "输出为「欢迎光临 TinyShop！」"},
 	}
 
 	for _, t := range tests {
