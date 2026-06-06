@@ -1,5 +1,5 @@
-github.com/byteforge-run/tester-utils v1.16.0 h1:ArMqWnQqsxqQoJZefK8rmzLgtQq8TvozIM3g6jrVa1o=
-github.com/byteforge-run/tester-utils v1.16.0/go.mod h1:La+PVtv1jKyqqJGoDV7bPalXiZdPSNLfP5YoUN3Jiuo=
+github.com/byteforge-run/tester-utils v1.16.1 h1:YSnNIuDTj3u+aQDl22YYwdr6cZw+0kFp42mH1kyWV9w=
+github.com/byteforge-run/tester-utils v1.16.1/go.mod h1:La+PVtv1jKyqqJGoDV7bPalXiZdPSNLfP5YoUN3Jiuo=
 github.com/creack/pty v1.1.24 h1:bJrF4RRfyJnbTJqzRLHzcGaZK1NeM5kTC9jGgovnR1s=
 github.com/creack/pty v1.1.24/go.mod h1:08sCNb52WyoAwi2QDyzUCTgcvVFhUzewun7wtTfvcwE=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
