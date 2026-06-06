@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+
+      - name: Build tester
+        run: go build -v .
+
+      - name: Run unit tests
+        run: go test -v ./...
+
+      - name: Verify binary
+        run: ./tinyshop-tester --help
+
+  regression-test:
+    needs: unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build test image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64
+          push: false
+          load: true
+          tags: ghcr.io/byteforge-run/tinyshop-tester:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Checkout solution
+        uses: actions/checkout@v4
+        with:
+          repository: byteforge-run/tinyshop-solution
+          token: ${{ secrets.SOLUTION_REPO_PAT }}
+          path: solution
+
+      - name: Run regression tests
+        run: |
+          STAGES=(
+            hello-shop
+            first-product
+            set-price
+            first-sale
+            discount-or-not
+          )
+
+          FAILED=()
+          TOTAL=0
+          for stage in "${STAGES[@]}"; do
+            TOTAL=$((TOTAL + 1))
+            find "$(pwd)/solution" -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+            echo "Testing ${stage}..."
+            if docker run --rm --user $(id -u):$(id -g) \
+              -v "$(pwd)/solution:/workspace" \
+              ghcr.io/byteforge-run/tinyshop-tester:test \
+              -s "$stage" -d /workspace; then
+              echo "✓ ${stage} passed"
+            else
+              echo "✗ ${stage} failed"
+              FAILED+=("${stage}")
+            fi
+          done
+
+          if [ ${#FAILED[@]} -gt 0 ]; then
+            echo ""
+            echo "Failed: ${FAILED[*]}"
+            exit 1
+          fi
+
+          echo ""
+          echo "All ${TOTAL} tests passed!"
