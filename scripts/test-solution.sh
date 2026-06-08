@@ -22,13 +22,16 @@ STAGES=(
 	"set-price"           # S03
 	"first-sale"          # S04
 	"discount-or-not"     # S05
-	# "three-tier-discount" # S06
-	# "sell-three-items"  # S07
-	# "sell-until-quit"   # S08
-	# "reusable-discount" # S09
-	# "first-bug"         # S10
+	"three-tier-discount" # S06
+	"sell-three-items"    # S07
+	"sell-until-quit"     # S08
+	"reusable-discount"   # S09
+	"first-bug"           # S10
 
-	# Act 2-5: 待添加
+	# Act 2: 进货与库存
+	"product-list"        # S11
+
+	# Act 3-5: 待添加
 )
 
 # 若指定了参数，只跑该关卡

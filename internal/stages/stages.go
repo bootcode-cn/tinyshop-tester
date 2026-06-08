@@ -14,13 +14,16 @@ func GetDefinition() tester_definition.TesterDefinition {
 			setPriceTestCase(),
 			firstSaleTestCase(),
 			discountOrNotTestCase(),
-			// threeTierDiscountTestCase(),
-			// sellThreeItemsTestCase(),
-			// sellUntilQuitTestCase(),
-			// reusableDiscountTestCase(),
-			// firstBugTestCase(),
+			threeTierDiscountTestCase(),
+			sellThreeItemsTestCase(),
+			sellUntilQuitTestCase(),
+			reusableDiscountTestCase(),
+			firstBugTestCase(),
 
-			// Act 2: 进货与库存（待添加）
+			// Act 2: 进货与库存
+			productListTestCase(),
+			browseMenuTestCase(),
+
 			// Act 3: 第一个顾客（待添加）
 			// Act 4: 开始赚钱（待添加）
 			// Act 5: 数据驱动决策（待添加）
