@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/byteforge-run/tester-utils/runner"
-	"github.com/byteforge-run/tester-utils/structured_output"
-	"github.com/byteforge-run/tester-utils/test_case_harness"
-	"github.com/byteforge-run/tester-utils/tester_definition"
+	"github.com/bootcode-cn/tester-utils/runner"
+	"github.com/bootcode-cn/tester-utils/structured_output"
+	"github.com/bootcode-cn/tester-utils/test_case_harness"
+	"github.com/bootcode-cn/tester-utils/tester_definition"
 )
 
 func productListTestCase() tester_definition.TestCase {

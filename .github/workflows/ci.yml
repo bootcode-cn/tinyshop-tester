@@ -52,14 +52,14 @@ jobs:
           platforms: linux/amd64
           push: false
           load: true
-          tags: ghcr.io/byteforge-run/tinyshop-tester:test
+          tags: ghcr.io/bootcode-cn/tinyshop-tester:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Checkout solution
         uses: actions/checkout@v4
         with:
-          repository: byteforge-run/tinyshop-solution
+          repository: bootcode-cn/tinyshop-solution
           token: ${{ secrets.SOLUTION_REPO_PAT }}
           path: solution
 
@@ -81,7 +81,7 @@ jobs:
             echo "Testing ${stage}..."
             if docker run --rm --user $(id -u):$(id -g) \
               -v "$(pwd)/solution:/workspace" \
-              ghcr.io/byteforge-run/tinyshop-tester:test \
+              ghcr.io/bootcode-cn/tinyshop-tester:test \
               -s "$stage" -d /workspace; then
               echo "✓ ${stage} passed"
             else

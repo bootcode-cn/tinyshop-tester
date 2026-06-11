@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/byteforge-run/tinyshop-tester/internal/stages"
-	tester_utils "github.com/byteforge-run/tester-utils"
+	"github.com/bootcode-cn/tinyshop-tester/internal/stages"
+	tester_utils "github.com/bootcode-cn/tester-utils"
 )
 
 func main() {

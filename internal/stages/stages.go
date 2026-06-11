@@ -1,7 +1,7 @@
 package stages
 
 import (
-	"github.com/byteforge-run/tester-utils/tester_definition"
+	"github.com/bootcode-cn/tester-utils/tester_definition"
 )
 
 // GetDefinition returns the TesterDefinition for the tinyshop course.

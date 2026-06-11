@@ -5,7 +5,7 @@ TinyShop 课程自动评测工具。
 ## 方式一：源码构建
 
 ```bash
-git clone https://github.com/byteforge-run/tinyshop-tester
+git clone https://github.com/bootcode-cn/tinyshop-tester
 cd tinyshop-tester
 go build -o tinyshop-tester .
 ./tinyshop-tester -s hello-shop -d ~/my-solution
@@ -18,9 +18,9 @@ go build -o tinyshop-tester .
 **快速开始**
 
 ```bash
-cd ~/my-solution  # 你的解答目录（包含 byteforge.yml）
-docker pull ghcr.io/byteforge-run/tinyshop-tester:latest
-docker run --rm --user $(id -u):$(id -g) -v "$(pwd):/workspace" ghcr.io/byteforge-run/tinyshop-tester:latest -s hello-shop -d /workspace
+cd ~/my-solution  # 你的解答目录（包含 bootcode.yml）
+docker pull ghcr.io/bootcode-cn/tinyshop-tester:latest
+docker run --rm --user $(id -u):$(id -g) -v "$(pwd):/workspace" ghcr.io/bootcode-cn/tinyshop-tester:latest -s hello-shop -d /workspace
 ```
 
 **推荐：创建 test.sh 脚本**
@@ -29,7 +29,7 @@ docker run --rm --user $(id -u):$(id -g) -v "$(pwd):/workspace" ghcr.io/byteforg
 
 ```bash
 #!/bin/bash
-docker run --rm --user $(id -u):$(id -g) -v "$(pwd):/workspace" ghcr.io/byteforge-run/tinyshop-tester:latest \
+docker run --rm --user $(id -u):$(id -g) -v "$(pwd):/workspace" ghcr.io/bootcode-cn/tinyshop-tester:latest \
   -s "${1:-hello-shop}" -d /workspace
 ```
 
@@ -38,7 +38,7 @@ docker run --rm --user $(id -u):$(id -g) -v "$(pwd):/workspace" ghcr.io/byteforg
 **本地构建镜像（可选）**
 
 ```bash
-git clone https://github.com/byteforge-run/tinyshop-tester
+git clone https://github.com/bootcode-cn/tinyshop-tester
 cd tinyshop-tester
 docker build -t my-tester .
 docker run --rm --user $(id -u):$(id -g) -v ~/my-solution:/workspace my-tester -s hello-shop -d /workspace
