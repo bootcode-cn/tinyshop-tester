@@ -139,7 +139,7 @@ jobs:
           OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
         run: |
           ossutil cp -f tinyshop-tester-linux-amd64 \
-            oss://bootcode-eval/testers/tinyshop-tester-linux-amd64 \
+            oss://bootcode-cn-eval/testers/tinyshop-tester-linux-amd64 \
             --endpoint https://oss-cn-shanghai.aliyuncs.com \
             --access-key-id "$OSS_ACCESS_KEY_ID" \
             --access-key-secret "$OSS_ACCESS_SECRET"
