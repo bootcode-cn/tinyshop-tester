@@ -1,4 +1,4 @@
-# TinyShop Tester (tinyshop-tester)
+# TinyShop Tester (tinyshop-python-tester)
 
 TinyShop 课程自动评测工具。
 

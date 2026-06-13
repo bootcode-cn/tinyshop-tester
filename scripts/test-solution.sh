@@ -27,9 +27,11 @@ STAGES=(
 	"sell-until-quit"     # S08
 	"reusable-discount"   # S09
 	"first-bug"           # S10
+	"import-stdlib"       # S11
 
 	# Act 2: 进货与库存
-	"product-list"        # S11
+	"product-list"        # S12
+	"browse-menu"         # S13
 
 	# Act 3-5: 待添加
 )

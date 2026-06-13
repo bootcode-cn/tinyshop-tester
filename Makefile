@@ -1,4 +1,4 @@
-.PHONY: build test clean run deps fmt test-solution
+.PHONY: build test clean run deps fmt test-solution test-pyodide
 
 # Build tester
 build:
@@ -26,6 +26,10 @@ deps:
 fmt:
 	go fmt ./...
 
-# Test all stages against local solution
+# Test all stages against local solution (Go tester)
 test-solution:
 	./scripts/test-solution.sh
+
+# Test all stages in Pyodide (browser simulation)
+test-pyodide:
+	./scripts/test-pyodide.sh

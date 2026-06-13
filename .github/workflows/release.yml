@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: bootcode-cn/tinyshop-tester
+  IMAGE_NAME: bootcode-cn/tinyshop-python-tester
 
 jobs:
   unit-test:
@@ -28,7 +28,7 @@ jobs:
         run: go test -v ./...
 
       - name: Verify binary
-        run: ./tinyshop-tester --help
+        run: ./tinyshop-python-tester --help
 
   regression-test:
     needs: unit-test
@@ -51,14 +51,14 @@ jobs:
           platforms: linux/amd64
           push: false
           load: true
-          tags: ghcr.io/bootcode-cn/tinyshop-tester:test
+          tags: ghcr.io/bootcode-cn/tinyshop-python-tester:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Checkout solution
         uses: actions/checkout@v4
         with:
-          repository: bootcode-cn/tinyshop-solution
+          repository: bootcode-cn/tinyshop-python-solution
           token: ${{ secrets.SOLUTION_REPO_PAT }}
           path: solution
 
@@ -80,7 +80,7 @@ jobs:
             echo "Testing ${stage}..."
             if docker run --rm --user $(id -u):$(id -g) \
               -v "$(pwd)/solution:/workspace" \
-              ghcr.io/bootcode-cn/tinyshop-tester:test \
+              ghcr.io/bootcode-cn/tinyshop-python-tester:test \
               -s "$stage" -d /workspace; then
               echo "✓ ${stage} passed"
             else
@@ -115,15 +115,15 @@ jobs:
 
       - name: Build binaries
         run: |
-          CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 go build -ldflags="-s -w" -o tinyshop-tester-linux-amd64  .
-          CGO_ENABLED=0 GOOS=linux  GOARCH=arm64 go build -ldflags="-s -w" -o tinyshop-tester-linux-arm64  .
-          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o tinyshop-tester-darwin-amd64 .
-          CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o tinyshop-tester-darwin-arm64 .
+          CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 go build -ldflags="-s -w" -o tinyshop-python-tester-linux-amd64  .
+          CGO_ENABLED=0 GOOS=linux  GOARCH=arm64 go build -ldflags="-s -w" -o tinyshop-python-tester-linux-arm64  .
+          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o tinyshop-python-tester-darwin-amd64 .
+          CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o tinyshop-python-tester-darwin-arm64 .
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: tinyshop-tester-*
+          files: tinyshop-python-tester-*
           generate_release_notes: true
 
       - name: Install ossutil
@@ -138,8 +138,8 @@ jobs:
           OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
           OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
         run: |
-          ossutil cp -f tinyshop-tester-linux-amd64 \
-            oss://bootcode-cn-eval/testers/tinyshop-tester-linux-amd64 \
+          ossutil cp -f tinyshop-python-tester-linux-amd64 \
+            oss://bootcode-cn-eval/testers/tinyshop-python-tester-linux-amd64 \
             --endpoint https://oss-cn-shanghai.aliyuncs.com \
             --access-key-id "$OSS_ACCESS_KEY_ID" \
             --access-key-secret "$OSS_ACCESS_SECRET"

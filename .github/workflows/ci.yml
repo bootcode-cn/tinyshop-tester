@@ -29,7 +29,7 @@ jobs:
         run: go test -v ./...
 
       - name: Verify binary
-        run: ./tinyshop-tester --help
+        run: ./tinyshop-python-tester --help
 
   regression-test:
     needs: unit-test
@@ -52,14 +52,14 @@ jobs:
           platforms: linux/amd64
           push: false
           load: true
-          tags: ghcr.io/bootcode-cn/tinyshop-tester:test
+          tags: ghcr.io/bootcode-cn/tinyshop-python-tester:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Checkout solution
         uses: actions/checkout@v4
         with:
-          repository: bootcode-cn/tinyshop-solution
+          repository: bootcode-cn/tinyshop-python-solution
           token: ${{ secrets.SOLUTION_REPO_PAT }}
           path: solution
 
@@ -81,7 +81,7 @@ jobs:
             echo "Testing ${stage}..."
             if docker run --rm --user $(id -u):$(id -g) \
               -v "$(pwd)/solution:/workspace" \
-              ghcr.io/bootcode-cn/tinyshop-tester:test \
+              ghcr.io/bootcode-cn/tinyshop-python-tester:test \
               -s "$stage" -d /workspace; then
               echo "✓ ${stage} passed"
             else

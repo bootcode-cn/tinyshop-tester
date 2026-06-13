@@ -19,6 +19,7 @@ func GetDefinition() tester_definition.TesterDefinition {
 			sellUntilQuitTestCase(),
 			reusableDiscountTestCase(),
 			firstBugTestCase(),
+			importStdlibTestCase(),
 
 			// Act 2: 进货与库存
 			productListTestCase(),
